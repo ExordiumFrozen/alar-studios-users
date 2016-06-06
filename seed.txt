@@ -1,0 +1,1 @@
+INSERT INTO user (username,password,name,role) VALUES ('admin@example.com','pbkdf2:sha1:1000$5WwSX60G$0574ef2734fc0deb05312dd20255dffba381f68e','Admin',0);

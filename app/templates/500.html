@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link href="/static/css/errors.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="hero-unit center">
+                <h1>An unexpected error has occurred</h1>
+                <br />
+                <p>Oops, something went wrong</p>
+                <a href="{{url_for('index')}}" class="btn btn-large btn-info">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

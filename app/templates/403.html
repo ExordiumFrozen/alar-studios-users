@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link href="/static/css/errors.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="hero-unit center">
+                <h1>Access Violation</h1>
+                <br />
+                <p>This action is forbidden for you</p>
+                <a href="{{url_for('index')}}" class="btn btn-large btn-info">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    {% if g.user.role == 0 %}
+    <h2>Add user with request</h2>
+    <br>
+    <form class="form-horizontal" method="post" name="add_user_request" action="">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" id="username" name="username" class="input-xlarge"
+                        placeholder="Username (email)" value="{{ request.form.username }}" required>
+                    </td>
+                    <td>
+                        <input type="text" id="name" name="name" class="input-xlarge"
+                        placeholder="Full Name" value="{{ request.form.name }}" required>
+                    </td>
+                    <td>
+                        <input type="password" id="password" name="password" class="input-xlarge"
+                        placeholder="Password" value="{{ request.form.password }}" required>
+                    </td>
+                    <td>
+                        <input type="text" id="role" name="role" class="input-xlarge"
+                        placeholder="Role" value="{{ request.form.role }}" required>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Save">
+            </div>
+        </div>
+    </form>
+    {% else %}
+    <h2>You're not admin</h2>
+    {% endif %}
+</div>
+{% endblock %}

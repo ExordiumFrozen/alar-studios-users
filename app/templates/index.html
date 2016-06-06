@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Users in database</h2>
+    {% if g.user.role == 0 %}
+    <h3>You're can view, add, edit or remove users</h3>
+    {% else %}
+    <h3>You're can view other users</h3>
+    {% endif %}
+    <br>
+    {% if users %}          
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                    {% if g.user.role == 0 %}
+                    <th>Edit</th>
+                    <th>Remove</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users.items %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    {% if user.role == 0 %}
+                    <td>admin user</td>
+                    {% else %}
+                    <td>regular user</td>
+                    {% endif %}
+                    {% if g.user.role == 0 %}
+                        {% if user.id != 1 %}
+                            <td><a href="{{url_for('edit_user', user_id=user.id) }}" class="btn btn-primary" role="button">Edit</a></td>
+                            <td><a href="{{url_for('delete_user', user_id=user.id) }}" class="btn btn-danger" role="button">Remove</a></td>
+                        {% else %}
+                            <td><button type="button" class="btn btn-primary disabled">Edit</button></td>
+                            <td><button type="button" class="btn btn-danger disabled">Remove</button></td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            <ul class="pager">
+                {% if users.has_prev %}
+                <li class="previous"><a href="{{ url_for('index', page=users.prev_num) }}">Previous</a></li>
+                {% else %}
+                <li class="previous disabled"><a href="#">Previous</a></li>
+                {% endif %}
+                {% if users.has_next %}
+                <li class="next"><a href="{{ url_for('index', page=users.next_num) }}">Next</a></li>
+                {% else %}
+                <li class="next disabled"><a href="#">Next</a></li>
+                {% endif %}
+            </ul>
+            </tbody>
+      </table>
+    {% else %}
+        <p>You're can add, edit or remove users</p>
+    {% endif %}
+</div>
+{% endblock %}
